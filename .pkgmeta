@@ -1,5 +1,4 @@
 package-as: ES_Talents
-enable-toc-creation: no
 
 ignore:
     - .github

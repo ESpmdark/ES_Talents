@@ -1,0 +1,7 @@
+package-as: ES_Travel
+enable-toc-creation: no
+
+ignore:
+    - .github
+    - .gitignore
+    - README.md

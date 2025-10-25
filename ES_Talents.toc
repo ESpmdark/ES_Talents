@@ -1,0 +1,15 @@
+## Interface: 110200
+## Title: ES_Talents
+## Author: Elêssar 
+## Notes: Simple talent save addon
+## Version: 1.4.2
+## IconTexture: Interface/AddOns/ES_Talents/img/addon_icon
+## LoadOnDemand: 1
+## LoadWith: Blizzard_PlayerSpells
+## SavedVariables: ESTAL_DB
+
+ES_Talents.lua
+main.xml
+import.xml
+manager.xml
+save.xml

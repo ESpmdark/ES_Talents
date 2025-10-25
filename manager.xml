@@ -1,0 +1,115 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+	<Script file="mixins.lua"/>
+	
+	<Frame name="ES_Talents_Manager" mixin="ESTalentMainMixin" toplevel="true" inherits="ClassTalentLoadoutDialogTemplate" parent="UIParent" hidden="true">
+		<KeyValues>
+			<KeyValue key="titleText" value="Create autotalent-build" type="string"/>
+		</KeyValues>
+		<Size x="460" y="520"/>
+		<Anchors>
+			<Anchor point="TOP" relativePoint="TOP" y="-200"/>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<FontString parentKey="Count" font="Fonts\FRIZQT__.TTF" text="0/2000 Characters Used">
+					<FontHeight val="12"/>
+					<Anchors>
+						<Anchor point="BOTTOM" relativeTo="$parent" x="0" y="58" />
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame parentKey="NameControl" mixin="ESTalentsEditBoxMixin">
+				<KeyValues>
+					<KeyValue key="labelText" value="" type="string"/>
+				</KeyValues>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.ContentArea"/>
+					<Anchor point="TOPRIGHT" relativeKey="$parent.ContentArea"/>
+				</Anchors>
+				<Size y="100"/>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString parentKey="Label" inherits="GameFontNormal">
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<ScrollFrame name="InputContainer" parentKey="InputContainer" inherits="InputScrollFrameTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent" x="40" y="-50"/>
+							<Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT" relativeTo="$parent" x="-40" y="-60"/>
+						</Anchors>
+						<KeyValues>
+							<KeyValue key="maxLetters" value="100" type="number"/>
+							<KeyValue key="instructions" value="Name your new build" type="string"/>
+							<KeyValue key="hideCharCount" value="true" type="boolean"/>
+						</KeyValues>
+					</ScrollFrame>
+				</Frames>
+				<Scripts>
+					<OnLoad method="OnLoad"/>
+					<OnHide method="OnShow"/>
+				</Scripts>
+			</Frame>
+			<Frame parentKey="ImportControl" mixin="ESTalentsEditBoxMixin">
+				<KeyValues>
+					<KeyValue key="labelText" value="" type="string"/>
+				</KeyValues>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.ContentArea"/>
+					<Anchor point="TOPRIGHT" relativeKey="$parent.ContentArea"/>
+				</Anchors>
+				<Size y="100"/>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString parentKey="Label" inherits="GameFontNormal">
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<ScrollFrame parentKey="InputContainer" inherits="InputScrollFrameTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent" x="40" y="-80"/>
+							<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="$parent" x="-40" y="78"/>
+						</Anchors>
+						<KeyValues>
+							<KeyValue key="maxLetters" value="2000" type="number"/>
+							<KeyValue key="instructions" value="Paste loadout code here. Importstrings needs to be added to a new line for each string" type="text"/>
+							<KeyValue key="hideCharCount" value="true" type="boolean"/>
+						</KeyValues>
+					</ScrollFrame>
+				</Frames>
+				<Scripts>
+					<OnLoad method="OnLoad"/>
+					<OnHide method="OnShow"/>
+				</Scripts>
+			</Frame>
+			<Button parentKey="AcceptButton" inherits="ClassTalentLoadoutDialogButtonTemplate" text="Import">
+				<KeyValues>
+					<KeyValue key="disabledTooltip" value="Missing input" type="string"/>
+				</KeyValues>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOM" relativeKey="$parent.ContentArea" x="-5"/>
+				</Anchors>
+			</Button>
+			<Button parentKey="CancelButton" inherits="ClassTalentLoadoutDialogButtonTemplate" text="CANCEL">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOM" relativeKey="$parent.ContentArea" x="5"/>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad method="OnLoad"/>
+			<OnHide method="OnHide"/>
+		</Scripts>
+	</Frame>
+</Ui>

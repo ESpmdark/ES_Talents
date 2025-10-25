@@ -1,0 +1,69 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+	<Script file="mixins.lua"/>
+	
+	<Frame name="ES_Talents_Save" mixin="ESTalentMainMixin" toplevel="true" inherits="ClassTalentLoadoutDialogTemplate" parent="UIParent" hidden="true">
+		<KeyValues>
+			<KeyValue key="titleText" value="Save talents" type="string"/>
+		</KeyValues>
+		<Size x="400" y="120"/>
+		<Anchors>
+			<Anchor point="TOP" relativePoint="TOP" y="-200"/>
+		</Anchors>
+		<Frames>
+			<Frame parentKey="NameControl" mixin="ESTalentsEditBoxMixin">
+				<KeyValues>
+					<KeyValue key="labelText" value="" type="string"/>
+				</KeyValues>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.ContentArea"/>
+					<Anchor point="TOPRIGHT" relativeKey="$parent.ContentArea"/>
+				</Anchors>
+				<Size y="100"/>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString parentKey="Label" inherits="GameFontNormal">
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<ScrollFrame name="InputContainer" parentKey="InputContainer" inherits="InputScrollFrameTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent" x="40" y="-46"/>
+							<Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT" relativeTo="$parent" x="-40" y="-56"/>
+						</Anchors>
+						<KeyValues>
+							<KeyValue key="maxLetters" value="100" type="number"/>
+							<KeyValue key="instructions" value="Includes any pending changes" type="string"/>
+							<KeyValue key="hideCharCount" value="true" type="boolean"/>
+						</KeyValues>
+					</ScrollFrame>
+				</Frames>
+				<Scripts>
+					<OnLoad method="OnLoad"/>
+					<OnHide method="OnShow"/>
+				</Scripts>
+			</Frame>		
+			<Button parentKey="AcceptButton" inherits="ClassTalentLoadoutDialogButtonTemplate" text="Save">
+				<KeyValues>
+					<KeyValue key="disabledTooltip" value="Missing input" type="string"/>
+				</KeyValues>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOM" relativeKey="$parent.ContentArea" x="-5"/>
+				</Anchors>
+			</Button>
+			<Button parentKey="CancelButton" inherits="ClassTalentLoadoutDialogButtonTemplate" text="CANCEL">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOM" relativeKey="$parent.ContentArea" x="5"/>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad method="OnLoad"/>
+			<OnHide method="OnHide"/>
+		</Scripts>
+	</Frame>
+</Ui>

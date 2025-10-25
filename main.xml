@@ -1,0 +1,229 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+	<Script file="ES_Talents.lua"/>
+	
+	<Frame name="ES_Talents_Main" toplevel="true" parent="UIParent" hidden="true">
+		<Size x="110" y="24"/>
+		<Anchors>
+			<Anchor point="BOTTOM" relativePoint="BOTTOM" y="5"/>
+		</Anchors>
+		<Frames>
+			<DropdownButton parentKey="Builds" inherits="MagicButtonTemplate" text='|cffffef8bBuilds|r'>
+				<KeyValues>
+					<KeyValue key="menuPoint" type="string" value="BOTTOM"/>
+					<KeyValue key="menuPointX" type="number" value="0"/>
+					<KeyValue key="menuPointY" type="number" value="0"/>
+					<KeyValue key="menuRelativePoint" type="string" value="TOP"/>
+				</KeyValues>
+				<Size x="64" y="24"/>
+				<Anchors>
+					<Anchor point="CENTER" relativeKey="$parent" relativePoint="CENTER" x="0" y="0"/>
+				</Anchors>
+				<Scripts>
+						<OnLoad function="ES_Talents_Builds_Load"/>
+				</Scripts>
+			</DropdownButton>
+			
+			<Button parentKey="New" inherits="MagicButtonTemplate">
+				<Size x="32" y="24"/>
+				<Anchors>
+					<Anchor point="LEFT" relativeKey="$parent.Builds" relativePoint="RIGHT" x="0" y="0"/>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentOverlay" file="Interface\AddOns\ES_Talents\img\new.tga">
+							<Size x="18" y="18"/>
+							<Anchors>
+								<Anchor point="CENTER" x="0" y="0"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>
+						ES_Talents_Save:Show()
+					</OnClick>
+				</Scripts>
+			</Button>
+			
+			<Button parentKey="Import" inherits="MagicButtonTemplate">
+				<Size x="32" y="24"/>
+				<Anchors>
+					<Anchor point="RIGHT" relativeKey="$parent.Builds" relativePoint="LEFT" x="0" y="0"/>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentOverlay"  file="Interface\AddOns\ES_Talents\img\import.tga">
+							<Size x="18" y="18"/>
+							<Anchors>
+								<Anchor point="CENTER" x="0" y="0"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>
+						ES_Talents_Import:Show()
+					</OnClick>
+				</Scripts>
+			</Button>
+			
+			<CheckButton parentKey="AutoToggle" inherits="ChatConfigCheckButtonTemplate" checked="false">
+				<KeyValues>
+					<KeyValue key="HitRectInsets" value="0" type="number"/>
+				</KeyValues>
+				<Size x="24" y="24"/>
+				<Anchors>
+					<Anchor point="LEFT" relativeKey="$parent.New" relativePoint="RIGHT" x="5"/>
+				</Anchors>
+				<Scripts>
+					<OnClick function="ES_Talents_AutoToggle_OnClick"/>
+					<OnLoad>
+						self:SetHitRectInsets(0, 0, 0, 0)
+						self.Text:SetText("Auto talent")
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			
+			<DropdownButton parentKey="AutoDD" inherits="WowStyle1DropdownTemplate" hidden="true">
+				<KeyValues>
+					<KeyValue key="menuPoint" type="string" value="BOTTOM"/>
+					<KeyValue key="menuPointX" type="number" value="0"/>
+					<KeyValue key="menuPointY" type="number" value="0"/>
+					<KeyValue key="menuRelativePoint" type="string" value="TOP"/>
+				</KeyValues>
+				<Size x="140" y="24"/>
+				<Anchors>
+					<Anchor point="LEFT" relativeKey="$parent.AutoToggle" relativePoint="RIGHT" x="0" y="0"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad function="ES_Talents_AutoDD_Load"/>
+				</Scripts>
+			</DropdownButton>
+			
+			<Button parentKey="Spec1" inherits="TalentButtonCircleTemplate">
+				<Size x="32" y="32"/>
+				<Anchors>
+					<Anchor point="RIGHT" relativeKey="$parent.Builds" relativePoint="LEFT" x="-160" y="0"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture parentKey="Ring" atlas="talents-node-circle-gray">
+							<Size x="36" y="36"/>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<Texture parentKey="Icon">
+							<Size x="32" y="32"/>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>
+						ES_Talents_ActivateSpec(1)
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button parentKey="Spec2" inherits="TalentButtonCircleTemplate">
+				<Size x="32" y="32"/>
+				<Anchors>
+					<Anchor point="LEFT" relativeKey="$parent.Spec1" relativePoint="RIGHT" x="6" y="0"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture parentKey="Ring" atlas="talents-node-circle-gray">
+							<Size x="36" y="36"/>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<Texture parentKey="Icon">
+							<Size x="32" y="32"/>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>
+						ES_Talents_ActivateSpec(2)
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button parentKey="Spec3" inherits="TalentButtonCircleTemplate">
+				<Size x="32" y="32"/>
+				<Anchors>
+					<Anchor point="LEFT" relativeKey="$parent.Spec2" relativePoint="RIGHT" x="6" y="0"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture parentKey="Ring" atlas="talents-node-circle-gray">
+							<Size x="36" y="36"/>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<Texture parentKey="Icon">
+							<Size x="32" y="32"/>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>
+						ES_Talents_ActivateSpec(3)
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button parentKey="Spec4" inherits="TalentButtonCircleTemplate">
+				<Size x="32" y="32"/>
+				<Anchors>
+					<Anchor point="LEFT" relativeKey="$parent.Spec3" relativePoint="RIGHT" x="6" y="0"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture parentKey="Ring" atlas="talents-node-circle-gray">
+							<Size x="36" y="36"/>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<Texture parentKey="Icon">
+							<Size x="32" y="32"/>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>
+						ES_Talents_ActivateSpec(4)
+					</OnClick>
+				</Scripts>
+			</Button>
+			
+		</Frames>
+		<Scripts>
+			<OnShow function="ES_Talents_Main_OnShow"/>
+		</Scripts>
+	</Frame>
+</Ui>
+
+
+

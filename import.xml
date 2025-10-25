@@ -1,0 +1,129 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+	<Script file="mixins.lua"/>
+	
+	<Frame name="ES_Talents_Import" mixin="ESTalentMainMixin"  toplevel="true" inherits="ClassTalentLoadoutDialogTemplate" parent="UIParent" hidden="true">
+		<KeyValues>
+			<KeyValue key="titleText" value="Import talents from loadout" type="string"/>
+		</KeyValues>
+		<Size x="460" y="240"/>
+		<Anchors>
+			<Anchor point="TOP" relativePoint="TOP" y="-200"/>
+		</Anchors>
+		<Frames>
+			<Frame parentKey="ImportControl" mixin="ESTalentsEditBoxMixin">
+				<KeyValues>
+					<KeyValue key="labelText" value="" type="string"/>
+				</KeyValues>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.ContentArea"/>
+					<Anchor point="TOPRIGHT" relativeKey="$parent.ContentArea"/>
+				</Anchors>
+				<Size y="100"/>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString parentKey="Label" inherits="GameFontNormal">
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<ScrollFrame parentKey="InputContainer" inherits="InputScrollFrameTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent" x="40" y="-50"/>
+							<Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT" relativeTo="$parent" x="-40" y="-140"/>
+						</Anchors>
+						<KeyValues>
+							<KeyValue key="maxLetters" value="1000" type="number"/>
+							<KeyValue key="instructions" value="HUD_CLASS_TALENTS_IMPORT_INSTRUCTIONS" type="global"/>
+							<KeyValue key="hideCharCount" value="true" type="boolean"/>
+						</KeyValues>
+					</ScrollFrame>
+				</Frames>
+				<Scripts>
+					<OnLoad method="OnLoad"/>
+					<OnHide method="OnShow"/>
+				</Scripts>
+			</Frame>
+			<CheckButton parentKey="CheckButton" inherits="ChatConfigCheckButtonTemplate" checked="false">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeKey="$parent.ImportControl" y="-20"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if self:GetChecked() then
+							self.Text:SetText("")
+							self:GetParent().NameControl:Show()
+							self:GetParent().Title:SetText("Save talents from loadout")
+							self:GetParent().AcceptButton:SetText("Save")
+						else
+							self.Text:SetText("Save build directly from import string")
+							self:GetParent().NameControl:Hide()
+							self:GetParent().Title:SetText("Import talents from loadout")
+							self:GetParent().AcceptButton:SetText("Import")
+						end
+						self:GetParent():UpdateAcceptButtonEnabledState()
+					</OnClick>
+					<OnLoad>
+						self.Text:SetText("Save build directly from import string")
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<Frame parentKey="NameControl" mixin="ESTalentsEditBoxMixin" hidden="true">
+				<KeyValues>
+					<KeyValue key="labelText" value="" type="string"/>
+				</KeyValues>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.ContentArea"/>
+					<Anchor point="TOPRIGHT" relativeKey="$parent.ContentArea"/>
+				</Anchors>
+				<Size y="100"/>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString parentKey="Label" inherits="GameFontNormal">
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<ScrollFrame parentKey="InputContainer" inherits="InputScrollFrameTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeKey="$parent.ImportControl" x="30" y="-25"/>
+							<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeKey="$parent.ImportControl" x="0" y="-35"/>
+						</Anchors>
+						<KeyValues>
+							<KeyValue key="maxLetters" value="100" type="number"/>
+							<KeyValue key="instructions" value="Name your new build" type="string"/>
+							<KeyValue key="hideCharCount" value="true" type="boolean"/>
+						</KeyValues>
+					</ScrollFrame>
+				</Frames>
+				<Scripts>
+					<OnLoad method="OnLoad"/>
+					<OnHide method="OnShow"/>
+				</Scripts>
+			</Frame>
+			<Button parentKey="AcceptButton" inherits="ClassTalentLoadoutDialogButtonTemplate" text="Import">
+				<KeyValues>
+					<KeyValue key="disabledTooltip" value="Missing input" type="string"/>
+				</KeyValues>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOM" relativeKey="$parent.ContentArea" x="-5"/>
+				</Anchors>
+			</Button>
+			<Button parentKey="CancelButton" inherits="ClassTalentLoadoutDialogButtonTemplate" text="CANCEL">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOM" relativeKey="$parent.ContentArea" x="5"/>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+				<OnLoad method="OnLoad"/>
+				<OnHide method="OnHide"/>
+		</Scripts>
+	</Frame>
+</Ui>

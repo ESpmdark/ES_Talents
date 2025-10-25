@@ -7,7 +7,6 @@ local GetConfigInfo = C_Traits.GetConfigInfo
 local GetTreeNodes = C_Traits.GetTreeNodes
 local GetNodeInfo = C_Traits.GetNodeInfo
 local GetConfigID = C_ClassTalents.GetActiveConfigID
-local CanPurchase = C_Traits.CanPurchaseRank
 local Purchase = C_Traits.PurchaseRank
 local CanChangeTalents = C_ClassTalents.CanChangeTalents
 local currSpec = C_SpecializationInfo.GetSpecialization
@@ -142,7 +141,7 @@ local function preparePending(t, count, curr)
 end
 
 local function verifyImportStream(importStream,direct)
-	local headerValid, serializationVersion, specID, treeHash = ClassTalentImportExportMixin:ReadLoadoutHeader(importStream);
+	local headerValid, serializationVersion, specID, _ = ClassTalentImportExportMixin:ReadLoadoutHeader(importStream);
 	local currentSerializationVersion = C_Traits.GetLoadoutSerializationVersion();
 	
 	if(not headerValid) then

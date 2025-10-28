@@ -1,6 +1,4 @@
 package-as: ES_Talents
 
-ignore:
-    - .github
-    - .gitignore
-    - README.md
+move-folders:
+ES_Talents/ES_Talents: ES_Talents

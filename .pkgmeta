@@ -1,4 +1,4 @@
 package-as: ES_Talents
 
 move-folders:
-ES_Talents/ES_Talents: ES_Talents
+ES_Talents/ES_Talents/*: /*

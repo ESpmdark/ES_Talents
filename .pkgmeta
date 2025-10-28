@@ -1,2 +1,8 @@
 package-as: ES_Talents/ES_Talents
 
+ignore:
+  - CHANGELOG.md
+
+manual-changelog:
+  filename: CHANGELOG.md
+  markup-type: markdown

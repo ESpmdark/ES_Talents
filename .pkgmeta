@@ -1,3 +1,8 @@
+package-as: ES_Talents/ES_Talents
+
+move-folders:
+  ES_Talents/ES_Talents: ES_Talents
+
 ignore:
   - CHANGELOG.md
 

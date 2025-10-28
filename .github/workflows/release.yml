@@ -14,7 +14,6 @@ jobs:
             - name: Clone project
               uses: actions/checkout@v4
               with:
-                  files: ES_Talents
                   fetch-depth: 0
             - name: Package and release
               uses: BigWigsMods/packager@v2

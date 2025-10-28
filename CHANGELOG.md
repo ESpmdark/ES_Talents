@@ -1,5 +1,4 @@
-# ES_Talents
+# [ES_Talents] (https://github.com/ESpmdark/ES_Talents)
 
-## [1.4.5]
-
-- No changes yet. Sending a test release
+## Version: 1.4.7
+- Another test release

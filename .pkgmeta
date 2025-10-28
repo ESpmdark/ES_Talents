@@ -1,5 +1,3 @@
-package-as: ES_Talents
-
 ignore:
   - CHANGELOG.md
 
